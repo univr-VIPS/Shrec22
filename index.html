@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+  
+    <img src="vips.png">
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#motivation" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Motivation</a> 
+    <a href="#dataset" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dataset</a> 
+    <a href="#task" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Task and evaluation </a> 
+    <a href="#dates" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Important dates</a> 
+    <a href="#organizers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Organizers</a> 
+   
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>UNIVR-VIPS lab</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-xxxlarge"><b>SHREC 2022 track on online detection of heterogeneous gestures </b></h1>
+   <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+  
+  <!-- Photo grid (modal) -->
+  <div class="w3-row-padding">
+    <div class="w3-half">
+      <img src="gestures.png" style="width:100%" onclick="onClick(this)" alt="gestures">
+
+    </div>
+
+    <div class="w3-half">
+            <img src="hololens2.jpg" style="width:100%" onclick="onClick(this)" alt="holo2">
+   
+    </div>
+  </div>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+  <!-- Motivation -->
+  <div class="w3-container" id="motivation" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Motivation</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Following the interesting results of the previous edition <a href="https://univr-vips.github.io/Shrec21/"> (Shrec'21 Track on online gesture recognition in the wild)</a>, we organize a novel edition of the contest, still aimed at benchmarking methods to detect and classify gestures from 3D trajectories of the finger'joints (requiring 3D geometry processing and being therefore interesting for the SHREC community).
+    As the most recent generation of Head Mounted Displays for mixed reality (Hololens2, Oculus Quest, VIVE) provide an accurate finger tracking, gestures can be exploited to create novel interaction paradigms for immersive VR and XR.
+     While we tried to mantain continuity with respect to the 2021 edition, we found necessary to generate a novel annotated dataset and to organize a novel contest as we found some issues in the Shrec'21 benchmark that need to be fixed. In the novel dataset, we will remove gesture classes creating ambiguities and we will provide two different time annotations (gesture intention and gesture execution). The evaluation will not only consider the correct gesture detection, but also the latency in the recognition.
+    </p>
+  </div>
+  
+    <!-- Dataset -->
+  <div class="w3-container" id="dataset" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Dataset</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>The dataset includes XX sequences including a variable number of gestures, divided in a training set, with provided annotations, and a test set where the gestures have to be found in an online p
+    </p>
+    
+    <p>Fingers data are captured with a Hololens2 device simulating mixed reality interaction. Capture is performed at 45fps. Time sequences are saved as text files where each row represents the data of a specific time frame with the coordinates of 26 joints. Each joint is therefore characterized by 3 floats (x,y,x position), therefore each row is encoded as:<br/>
+    Joint1_x; Joint1_y; Joint1_z; Joint2_x; Joint2_y; Joint2_z;  .....
+    <br/>
+    The joints' sequence is defined in the MRTK documentation <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.mixedreality.toolkit.utilities.trackedhandjoint?view=mixed-reality-toolkit-unity-2020-dotnet-2.7.0"> available at this link </a>
+	</p>
+		<p> The gesture dictionary is similar to the SHREC2021 one, but with a few changes.
+	
+<div class="w3-half">
+      <dl>
+							<dt>Static Gestures</dt>
+							<dd>- ONE</dd>
+							<dd>- TWO</dd>
+							<dd>- THREE</dd>
+							<dd>- FOUR</dd>
+							<dd>- OK</dd>
+							<dd>- MENU</dd>
+							
+							<dt> Dynamic Gestures</dt>
+							<dd>- LEFT</dd>
+							<dd>- RIGHT</dd>
+							<dd>- CIRCLE</dd>
+							<dd>- V</dd>
+							<dd>- CROSS</dd>
+							
+							<dt>Fine dynamic Gestures</dt>
+							<dd>- GRAB</dd>
+							<dd>- PINCH</dd>
+							<dd>- TAP</dd>
+							<dd>- EXPAND</dd>						
+							<dt>Fine dynamic periodic Gestures</dt>
+							<dd>- DENY</dd>
+							<dd>- KNOB</dd>
+
+						</dl>
+    </div>
+
+    <div class="w3-half">
+           <img src="dictionary.png" width=80%>
+    </div>
+
+ <p>
+ Training sequences will be distributed together with an annotation file 
+ </p>
+
+  </div>
+  
+  <!-- Task and evaluation -->
+  <div class="w3-container" id="task" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Task and evaluation </b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>
+    Participants should develop methods to detect and classify gestures of the dictionary in the test sequences based on the annotated examples in the training sequences. <u>The developed methods should process data simulating an online detection scenario or, in other words, detect and classify gestures progressively by processing trajectories from beginning to end.</u> 
+	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test), identifed gesture label (the string in the dictionary), time stamp of the detected gesture start (i.e. row number in the sequence file), <b> time stamp (row number in the sequence file) of the last frame used for the prediction.
+									For example, if the algorithm in the first sequence detects a PINCH and a ONE and in the second a THREE, a LEFT and a KNOB, the first two lines of the results file will be like the following ones:
+									<dl>
+						<dd>1;PINCH;12;54;ONE;82;138;</dd>
+						<dd>2;THREE;18;75;LEFT;111;183;KNOB;222;298;</dd>
+					</dl>
+					The two time values after the label will not therefore have the same meaning as in the training annotation file provided, 
+The evaluation is based on the number of correct gestures detected, the false positive rate and the detection latency. DA SPIEGARE QUANDO VENGONO RITENUTI VALIDI, COME GESTIRE RICONOSCIMENTI MULTIPLI, ecc.
+
+Authors should submit the file together with executable code/instructions to reproduce the results by sending an e-mail with the resulte 
+    </p>
+  </div>
+  
+  
+    <!-- Dates -->
+  <div class="w3-container" id="task" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>IMPORTANT DATES</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>
+    
+    </p>
+  </div>
+  
+   
+    
+
+  
+  <!-- Contact -->
+  <div class="w3-container" id="contact" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Organizers</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>Organizing team</p>
+    <ul>
+    <li> Marco Emporio - VIPS lab, University of Verona</li>
+     <li> Ariel Caputo - VIPS lab, University of Verona</li>
+      <li> Marco Cristani - VIPS lab, University of Verona</li>
+       <li> Andrea Giachetti - VIPS lab, University of Verona</li>
+    </ul>
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
+    </form>  
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
+</body>
+</html>
