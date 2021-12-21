@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>W3.CSS Template</title>
+<title>SHREC 2022 UNIVR-VIPS</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -115,10 +115,10 @@ body {font-size:16px;}
 							<dt>Fine dynamic Gestures</dt>
 							<dd>- GRAB</dd>
 							<dd>- PINCH</dd>
-							<dd>- TAP</dd>
-							<dd>- EXPAND</dd>						
+						
 							<dt>Fine dynamic periodic Gestures</dt>
 							<dd>- DENY</dd>
+							<dd>- WAVE </dd>
 							<dd>- KNOB</dd>
 
 						</dl>
@@ -128,28 +128,38 @@ body {font-size:16px;}
            <img src="dictionary.png" width=80%>
     </div>
 
- <p>
- Training sequences will be distributed together with an annotation file 
- </p>
 
   </div>
-  
+   <p>
+ Training sequences will be distributed together with an annotation file. It will be a text file with a line corresponding to each sequence, and where three numbers will be associated to each gesture: gesture decision time (when the subject executing the commands is instructed to perform the gesture), gesture execution start (annotated in post-processing), gesture execution end (annotated in post-processing).
+
+ </p>
+
+
   <!-- Task and evaluation -->
   <div class="w3-container" id="task" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Task and evaluation </b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>
     Participants should develop methods to detect and classify gestures of the dictionary in the test sequences based on the annotated examples in the training sequences. <u>The developed methods should process data simulating an online detection scenario or, in other words, detect and classify gestures progressively by processing trajectories from beginning to end.</u> 
-	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test), identifed gesture label (the string in the dictionary), time stamp of the detected gesture start (i.e. row number in the sequence file), <b> time stamp (row number in the sequence file) of the last frame used for the prediction.
+	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test), identifed gesture label (the string in the dictionary), time stamp of the detected gesture start (i.e. row number in the sequence file), time stamp (row number in the sequence file) of the last frame used for the prediction.
 									For example, if the algorithm in the first sequence detects a PINCH and a ONE and in the second a THREE, a LEFT and a KNOB, the first two lines of the results file will be like the following ones:
 									<dl>
 						<dd>1;PINCH;12;54;ONE;82;138;</dd>
 						<dd>2;THREE;18;75;LEFT;111;183;KNOB;222;298;</dd>
 					</dl>
-					The two time values after the label will not therefore have the same meaning as in the training annotation file provided, 
-The evaluation is based on the number of correct gestures detected, the false positive rate and the detection latency. DA SPIEGARE QUANDO VENGONO RITENUTI VALIDI, COME GESTIRE RICONOSCIMENTI MULTIPLI, ecc.
+					<b> IMPORTANT: the two time values after the label will not have the same meaning as the numbers in the annotation file provided for training.</b>
+					 
+The evaluation is based on the number of correct gestures detected, the false positive rate and the detection latency. The Jaccard Index of the continuous annotation of the frame sequence will be also evaluated.
 
-Authors should submit the file together with executable code/instructions to reproduce the results by sending an e-mail with the resulte 
+A gesture will be considered correctly detected it is continuously detected with the same label in a time window with an intersection with the ground truth annotation larger of more than 50% of its length. 
+
+The detection latency will be estimated as the difference between the actual gesture start and the reported time stamp of the last frame used for the prediction.
+
+Authors should submit the file together with executable code/instructions to reproduce the results by sending an e-mail with the results.
+
+Authors will have also to submit a 1-page latex description of their method, including all the important implementation details and reporting the computation time for a single frame classification.
+
     </p>
   </div>
   
@@ -159,7 +169,11 @@ Authors should submit the file together with executable code/instructions to rep
     <h1 class="w3-xxxlarge w3-text-red"><b>IMPORTANT DATES</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>
-    
+    <ul>
+    <li> <b> 28/1/2022</b> Dataset released </li>
+     <li> <b> 11/2/2022</b> Registration deadline </li>
+     <li> <b> 28/2/2022</b> Results'submission deadline </li>
+     <li> <b> 15/3/2022</b> Draft paper with the track outcomes submitted to Computer and Graphics</li>
     </p>
   </div>
   
@@ -174,11 +188,12 @@ Authors should submit the file together with executable code/instructions to rep
     <p>Organizing team</p>
     <ul>
     <li> Marco Emporio - VIPS lab, University of Verona</li>
+    <li> Anton Pirtac  - VIPS lab, University of Verona</li>
      <li> Ariel Caputo - VIPS lab, University of Verona</li>
       <li> Marco Cristani - VIPS lab, University of Verona</li>
        <li> Andrea Giachetti - VIPS lab, University of Verona</li>
     </ul>
-    <form action="/action_page.php" target="_blank">
+    <form action="mailto:andrea@andreagiachetti.it" target="_blank">
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
@@ -192,6 +207,8 @@ Authors should submit the file together with executable code/instructions to rep
         <input class="w3-input w3-border" type="text" name="Message" required>
       </div>
       <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
+      
+
     </form>  
   </div>
 
