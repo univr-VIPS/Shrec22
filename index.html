@@ -87,15 +87,19 @@ body {font-size:16px;}
   <div class="w3-container" id="dataset" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Dataset</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>The dataset includes XX sequences including a variable number of gestures, divided in a training set, with provided annotations, and a test set where the gestures have to be found, in accord to a specific protocol detailed in the following. 
+    
+    <a href="training_set.zip"> Click here to download the training data (with annotations)</a><br/>
+    <b> Test data will be soon available </b>
+    
+    <p>The dataset includes 288 sequences including a variable number of gestures, divided in a training set, with provided annotations, and a test set where the gestures have to be found, in accord to a specific protocol detailed in the following. 
     </p>
     
-    <p>Fingers data are captured with a Hololens2 device simulating mixed reality interaction. Capture is performed at 45fps. Time sequences are saved as text files where each row represents the data of a specific time frame with the coordinates of 26 joints. Each joint is therefore characterized by 3 floats (x,y,x position), therefore each row is encoded as:<br/>
-    Joint1_x; Joint1_y; Joint1_z; Joint2_x; Joint2_y; Joint2_z;  .....
+    <p>Fingers data are captured with a Hololens2 device simulating mixed reality interaction. Time sequences are saved as text files where each row represents the data of a specific time frame with the coordinates of 26 joints. Each joint is therefore characterized by 3 floats (x,y,x position), therefore each row is encoded as:<br/>
+    Frame Index(integer);  Time_stamp(float); Joint1_x (float); Joint1_y; Joint1_z; Joint2_x; Joint2_y; Joint2_z;  .....
     <br/>
-    The joints' sequence is defined in the MRTK documentation <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.mixedreality.toolkit.utilities.trackedhandjoint?view=mixed-reality-toolkit-unity-2020-dotnet-2.7.0"> available at this link </a>
+    The joints' sequence is described  <a href="table.html">  here (click for description) </a> and can also be find in the MRTK documentation <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.mixedreality.toolkit.utilities.trackedhandjoint?view=mixed-reality-toolkit-unity-2020-dotnet-2.7.0"> available at this link </a>
 	</p>
-		<p> The gesture dictionary is similar to the SHREC2021 one, but with a few changes.
+		<p> The gesture dictionary is similar to the SHREC2021 one, but with a few changes. The current dictionary is composed by 16 gestures divided in 4 categories: static characterized by a pose kept fixed, dynamic, characterized by a single trajectory of the hand, fine-grained dynamics, characterized by fingers'articulation, dynamic-periodic, where the same fingers'motion pattern is repeated more times. The description of the gestures <a href="table2.html"> is reported in this table</a>.
 	
 <div class="w3-half">
       <dl>
@@ -133,7 +137,16 @@ body {font-size:16px;}
 
   </div>
    <p>
- Training sequences will be distributed together with an annotation file. It will be a text file with a line corresponding to each sequence, and where three numbers will be associated to each gesture: gesture decision frame (when the subject executing the commands is instructed to perform the gesture), gesture execution start (frame index - annotated in post-processing), gesture execution end (frame index - annotated in post-processing) 
+ Training sequences are distributed together with an annotation file, <b> annotations.txt </b>. It is a text file with a line corresponding to each sequence, and where two integer numbers are associated to each gesture: gesture execution start (frame index - annotated in post-processing), gesture execution end (frame index - annotated in post-processing).
+
+For example, if the first sequence features a PINCH and a ONE and the second a THREE, a LEFT and a KNOB, the first two lines of the annotation file may be like the following ones:
+									<dl>
+						<dd>1;PINCH;10;30;ONE;85;13;</dd>
+						<dd>2;THREE;18;75;38;LEFT;111;183;131;KNOB;222;298;318;</dd>
+						<dd> .... </dd>
+					</dl>
+					
+					We also provide an additional file (train_acquisition programming.txt) that record the time annotation of when the command to perform gestures is given to the peforming subjects. It features a line per sequence with a sequence of time values followed by gesture labals. In the practical setting, at each time value the hololens app worn by the user started the reproduction of a recorded voice instructing to start the following command. These values may be useful for research purposes as it may give the possibility to analyze reaction times and preparatory movements, and we release them for the participants, but it will not be used in the evaluation. For the evaluation of the gestures start and end we will rely on the frame labels annotated in post processing. 
 
  </p>
 
@@ -144,14 +157,14 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>
     Participants should develop methods to detect and classify gestures of the dictionary in the test sequences based on the annotated examples in the training sequences. <u>The developed methods should process data simulating an online detection scenario or, in other words, detect and classify gestures progressively by processing trajectories from beginning to end.</u> 
-	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test) and, for each identifed gesture, a text string and three numbers separated by a semicolon. The string must be the gesture label (the string in the dictionary). The three numbers must be: the time stamp of the detected gesture start (i.e. row number in the sequence file), the time stamp of the detected gesture end (i.e. row number in the sequence file), the time stamp (row number in the sequence file) of the last frame used by the algorithm for the gesture start prediction.
+	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test) and, for each identifed gesture, a text string and three numbers separated by a semicolon. The string must be the gesture label (the string in the dictionary). The three numbers must be: the frame number (first column in the sequence file) of the detected gesture start, the frame number (first column in the sequence file) of the detected gesture end (i.e. row number in the sequence file), the frame number (first column in the sequence file) of the last frame used by the algorithm for the gesture start prediction.
 	
 For example, if the algorithm in the first sequence detects a PINCH and a ONE and in the second a THREE, a LEFT and a KNOB, the first two lines of the results file will be like the following ones:
 									<dl>
 						<dd>1;PINCH;12;54;32;ONE;82;138;103;</dd>
 						<dd>2;THREE;18;75;38;LEFT;111;183;131;KNOB;222;298;318;</dd>
 					</dl>
-					<b> IMPORTANT: the time values after the label will not have the same meaning as the numbers in the annotation file provided for training.</b>
+					<b> IMPORTANT: the third value for each gesture is should be explained by the algorithm description provided with the submission.</b>
 					 
 The evaluation is based on the number of correct gestures detected, the false positive rate and the detection latency. The Jaccard Index of the continuous annotation of the frame sequence will be also evaluated.
 
