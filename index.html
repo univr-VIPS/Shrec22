@@ -25,7 +25,9 @@ body {font-size:16px;}
     <a href="#motivation" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Motivation</a> 
     <a href="#dataset" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dataset</a> 
     <a href="#task" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Task and evaluation </a> 
+        <a href="#reg" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Registration-Submission</a> 
     <a href="#dates" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Important dates</a> 
+
     <a href="#organizers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Organizers</a> 
    
   </div>
@@ -76,10 +78,10 @@ body {font-size:16px;}
   <div class="w3-container" id="motivation" style="margin-top:75px">
     <h1 class="w3-xxxlarge w3-text-red"><b>Motivation</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Following the interesting results of the previous edition <a href="https://univr-vips.github.io/Shrec21/"> (Shrec'21 Track on online gesture recognition in the wild)</a>, we organize a novel edition of the contest, still aimed at benchmarking methods to detect and classify gestures from 3D trajectories of the fingers' joints (requiring 3D geometry processing and being therefore interesting for the SHREC community).
-    As the most recent generation of Head Mounted Displays for mixed reality (Hololens2, Oculus Quest, VIVE) provide an accurate finger tracking, gestures can be exploited to create novel interaction paradigms for immersive VR and XR.
-     While we tried to mantain continuity with respect to the 2021 edition, we made some important updates to the gestures' dictionary and to the recognition task and we will provide a novel dataset. 
-     In the novel dictionary we removed gesture classes creating ambiguities (POINTING, EXPAND) and the evaluation will not only consider the correct gesture detection, but also the latency in the recognition. The frame rate of the acquisition is lower and not not perfectly regular, and the time stamps of the captured frames are provided with the data.
+    <p> Following the interesting results of the previous edition <a href="https://univr-vips.github.io/Shrec21/"> (Shrec'21 Track on online gesture recognition in the wild)</a>, we organize a novel edition of the contest, still aimed at benchmarking methods to detect and classify gestures from 3D trajectories of the fingers' joints (requiring 3D geometry processing and being therefore interesting for the SHREC community).
+        As the most recent generation of Head-Mounted Displays for mixed reality (Hololens2, Oculus Quest, VIVE) provide accurate finger tracking, gestures can be exploited to create novel interaction paradigms for immersive VR and XR.
+     While we tried to maintain continuity with respect to the 2021 edition, we made some important updates to the gestures' dictionary and to the recognition task and we will provide a novel dataset. 
+     In the novel dictionary, we removed gesture classes creating ambiguities (POINTING, EXPAND) and the evaluation will not only consider the correct gesture detection, but also the latency in the recognition. The frame rate of the acquisition is lower and not perfectly regular, and the timestamps of the captured frames are provided with the data.
     </p>
   </div>
   
@@ -148,7 +150,7 @@ For example, if the first sequence features a PINCH and a ONE and the second a T
 						<dd> .... </dd>
 					</dl>
 					
-					We also provide an additional file (train_acquisition programming.txt) that record the time annotation of when the command to perform gestures is given to the peforming subjects. It features a line per sequence with a sequence of time values followed by gesture labals. In the practical setting, at each time value the hololens app worn by the user started the reproduction of a recorded voice instructing to start the following command. These values may be useful for research purposes as it may give the possibility to analyze reaction times and preparatory movements, and we release them for the participants, but it will not be used in the evaluation. For the evaluation of the gestures start and end we will rely on the frame labels annotated in post processing. 
+					We also provide an additional file (train_acquisition programming.txt) that records the time annotation of when the command to perform gestures is given to the performing subjects. It features a line per sequence with a sequence of time values followed by gesture labels. In the practical setting, at each time value, the Hololens app worn by the user started the reproduction of a recorded voice instructing to start the following command. These values may be useful for research purposes as they may give the possibility to analyze reaction times and preparatory movements, and we release them for the participants, but they will not be used in the evaluation. For the evaluation of the detection performances, we will rely on the frame labels annotated in post-processing. 
 
  </p>
 
@@ -158,26 +160,24 @@ For example, if the first sequence features a PINCH and a ONE and the second a T
     <h1 class="w3-xxxlarge w3-text-red"><b>Task and evaluation </b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>
-    Participants should develop methods to detect and classify gestures of the dictionary in the test sequences based on the annotated examples in the training sequences. <u>The developed methods should process data simulating an online detection scenario or, in other words, detect and classify gestures progressively by processing trajectories from beginning to end.</u> 
-	The format required for the submission should consists of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test) and, for each identifed gesture, a text string and three numbers separated by a semicolon. The string must be the gesture label (the string in the dictionary). The three numbers must be: the frame number (first column in the sequence file) of the detected gesture start, the frame number (first column in the sequence file) of the detected gesture end (i.e. row number in the sequence file), the frame number (first column in the sequence file) of the last frame used by the algorithm for the gesture start prediction.
+    Participants should develop methods to detect and classify gestures of the dictionary in the test sequences based on the annotated examples in the training sequences. The developed methods should process data simulating an online detection scenario or, in other words, detect and classify gestures progressively by processing trajectories from beginning to end. The format required for the submission should consist of a text file with a row corresponding to each sequence with the following information: sequence number (the number in the filename with the sequence in the training/test) and, for each identified gesture, a text string and three numbers separated by a semicolon. The string must be the gesture label (the string in the dictionary). The three numbers must be the frame number (first column in the sequence file) of the detected gesture start, the frame number (first column in the sequence file) of the detected gesture end (first column in the sequence file), the frame number (first column in the sequence file) of the last frame used by the algorithm for the gesture start prediction. For example, if the algorithm in the first sequence detects a PINCH and a ONE and in the second a THREE, a LEFT, and a KNOB, the first two lines of the results file will be like the following ones:
 	
-For example, if the algorithm in the first sequence detects a PINCH and a ONE and in the second a THREE, a LEFT and a KNOB, the first two lines of the results file will be like the following ones:
 									<dl>
 						<dd>1;PINCH;12;54;32;ONE;82;138;103;</dd>
 						<dd>2;THREE;18;75;38;LEFT;111;183;131;KNOB;222;298;318;</dd>
 					</dl>
-					<b> IMPORTANT: the third value for each gesture is should be explained by the algorithm description provided with the submission.</b>
-					 
-The evaluation is based on the number of correct gestures detected, the false positive rate and the detection latency. The Jaccard Index of the continuous annotation of the frame sequence will be also evaluated.
+					<b> IMPORTANT: the third value for each gesture should be consistent with the algorithm description provided with the submission. </b>
+<br/>					 
+The evaluation is based on the number of correct gestures detected, the false positive rate, and the detection latency. The Jaccard Index of the continuous annotation of the frame sequence will be also evaluated. A gesture will be considered correctly detected it is continuously detected with the same label in a time window with an intersection with the ground truth annotation larger of more than 50% of its length. The detection latency will be estimated as the difference between the actual gesture start and the reported timestamp of the last frame used for the prediction. 
 
-A gesture will be considered correctly detected it is continuously detected with the same label in a time window with an intersection with the ground truth annotation larger of more than 50% of its length. 
-
-The detection latency will be estimated as the difference between the actual gesture start and the reported time stamp of the last frame used for the prediction.
-
-Authors should submit the file together with executable code/instructions to reproduce the results by sending an e-mail with the results.
-
-Authors will have also to submit a 1-page latex description of their method, including all the important implementation details and reporting the computation time for a single frame classification.
-
+ <div class="w3-container" id="reg" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Registration and submission guidelines </b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <p>
+    
+Participants should register by sending an e-mail to <b> andrea.giachetti(at)univr.it </a> within the deadline reported below. 
+Each registered group should then complete the submission within the <b> strict</b> deadline of February 28.
+The submission must include up to three text files with results formatted as described above. Results can be obtained with different algorithms or parameters settings. Submission should preferably include executable code and instructions to reproduce the results.  Each group must also submit within the same strict deadline a 1-page latex description of the method used, including all the important implementation details and reporting the computation time for a single frame classification.
     </p>
   </div>
   
@@ -211,7 +211,7 @@ Authors will have also to submit a 1-page latex description of their method, inc
       <li> Marco Cristani - VIPS lab, University of Verona</li>
        <li> Andrea Giachetti - VIPS lab, University of Verona</li>
     </ul>
-    <form action="mailto:andrea@andreagiachetti.it" target="_blank">
+    <form action="mailto:andrea.giachetti@univr.it" target="_blank">
       <div class="w3-section">
         <label>Name</label>
         <input class="w3-input w3-border" type="text" name="Name" required>
