@@ -88,18 +88,20 @@ body {font-size:16px;}
     <h1 class="w3-xxxlarge w3-text-red"><b>Dataset</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     
-    <a href="training.zip"> Click here to download the training data (with annotations)</a><br/>
-    <b> Test data will be soon available </b>
-    
+  
     <p>The dataset includes 288 sequences including a variable number of gestures, divided in a training set, with provided annotations, and a test set where the gestures have to be found, in accord to a specific protocol detailed in the following. 
     </p>
+    
+    <b><a href="training_set.zip"> Click here to download the training data (with annotations)</a><br/></b>
+    <b><a href="test_set.zip"> Click here to download the test data (without annotations)</a><br/> </b>
+    
     
     <p>Fingers data are captured with a Hololens2 device simulating mixed reality interaction. Time sequences are saved as text files where each row represents the data of a specific time frame with the coordinates of 26 joints. Each joint is therefore characterized by 3 floats (x,y,x position), therefore each row is encoded as:<br/>
     Frame Index(integer);  Time_stamp(float); Joint1_x (float); Joint1_y; Joint1_z; Joint2_x; Joint2_y; Joint2_z;  .....
     <br/>
     The joints' sequence is described  <a href="table.html">  here (click for description) </a> and can also be find in the MRTK documentation <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.mixedreality.toolkit.utilities.trackedhandjoint?view=mixed-reality-toolkit-unity-2020-dotnet-2.7.0"> available at this link </a>
 	</p>
-		<p> The gesture dictionary is similar to the SHREC2021 one, but with a few changes. The current dictionary is composed by 16 gestures divided in 4 categories: static characterized by a pose kept fixed, dynamic, characterized by a single trajectory of the hand, fine-grained dynamics, characterized by fingers'articulation, dynamic-periodic, where the same fingers'motion pattern is repeated more times. The description of the gestures <a href="table2.html"> is reported in this table</a>.
+		<p> The gesture dictionary is similar to the SHREC2021 one, but with a few changes. The current dictionary is composed by 16 gestures divided in 4 categories: static characterized by a pose kept fixed (for at least 0.5 sec), dynamic, characterized by a single trajectory of the hand, fine-grained dynamics, characterized by fingers'articulation, dynamic-periodic, where the same fingers'motion pattern is repeated more times. The description of the gestures <a href="table2.html"> is reported in this table</a>.
 	
 <div class="w3-half">
       <dl>
