@@ -8,7 +8,7 @@ A = {}; %line with the original annotations for one sequence looped in the for
 R = {}; %line with the submitted result annotations for one sequence looped in the for
 
 A_file = fopen('test_annotations_fixed.txt'); %<<-- Change this file name with the file you want to use as GT 
-R_file = fopen('train_l.txt'); %<<-- Change this file name with the file you want evaluate
+R_file = fopen('your_results.txt'); %<<-- Change this file name with the file you want evaluate
 
 Raw_Results = [labels,cell(16,1)];
 for (i = 1:16) Raw_Results{i,2} = zeros(1,5); end
