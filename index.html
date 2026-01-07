@@ -171,14 +171,30 @@ For example, if the first sequence features a PINCH and a ONE and the second a T
 The evaluation is based on the number of correct gestures detected, the false positive rate, and the detection latency. The Jaccard Index of the continuous annotation of the frame sequence will be also evaluated. A gesture will be considered correctly detected it is continuously detected with the same label in a time window with an intersection with the ground truth annotation larger of more than 50% of its length. The detection latency will be estimated as the difference between the actual gesture start and the reported timestamp of the last frame used for the prediction. 
 
  <div class="w3-container" id="reg" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Registration and submission guidelines </b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b> Outcomes, test annotation and references </b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
     <p>
-    
+    The results of the contest are published in the Computers and Graphics paper:
+		https://www.sciencedirect.com/science/article/abs/pii/S0097849322001388
 
+	We are happy if you want to use data for further research. 	
     <b><a href="test_annotations_fixed.txt"> Click here to download the test data annotations</a><br/></b>
     <b><a href="evaluation_shrec22fix.m"> Click here to download the matlab evaluation code </a><br/> </b> </p>
-  </div>
+
+	 <br/><br/>
+If you use the data in a research paper, please cite:
+	 <br/>
+ @article{emporio2022shrec,
+  title={SHREC 2022 track on online detection of heterogeneous gestures},
+  author={Emporio, Marco and Caputo, Ariel and Giachetti, Andrea and Cristani, Marco and Borghi, Guido and D’Eusanio, Andrea and Le, Minh-Quan and Nguyen, Hai-Dang and Tran, Minh-Triet and Ambellan, Felix and others},
+  journal={Computers \& Graphics},
+  volume={107},
+  pages={241--251},
+  year={2022},
+  publisher={Elsevier}
+}
+ 
+ </div>
   
   
 
